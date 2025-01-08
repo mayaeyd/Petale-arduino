@@ -1,4 +1,4 @@
-#include "config.template.h"
+#include "config.h"
 #include "sensors.h"
 #include "websocket_handler.h"
 #include "watering.h"
@@ -24,3 +24,15 @@ void setup() {
     WebSocketHandler::getInstance().begin();
 }
 
+void loop() {
+    if (WiFi.status() != WL_CONNECTED) {
+        Serial.println("WiFi disconnected. Reconnecting...");
+        WiFi.begin(ssid, password);
+        delay(5000);
+        return;
+    }
+
+    WebSocketHandler::getInstance().loop();
+    
+    
+}
