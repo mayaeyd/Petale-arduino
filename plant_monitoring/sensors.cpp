@@ -22,5 +22,17 @@ void Sensors::readAndSendData() {
     Serial.print("Soil Moisture: ");
     Serial.println(soilMoisture);
 
-    
+    if (!isnan(temperature) && !isnan(humidity)) {
+        DynamicJsonDocument doc(200);
+        doc["type"] = "sensor_data";
+        doc["temperature"] = temperature;
+        doc["humidity"] = humidity;
+        doc["soil_moisture"] = soilMoisture;
+        
+        String output;
+        serializeJson(doc, output);
+        WebSocketHandler::getInstance().sendMessage(output);
+    } else {
+        Serial.println("Failed to read from DHT sensor!");
+    }
 }
