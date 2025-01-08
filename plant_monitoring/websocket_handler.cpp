@@ -11,3 +11,15 @@ WebSocketHandler& WebSocketHandler::getInstance() {
     return *instance;
 }
 
+void WebSocketHandler::begin() {
+    webSocket.begin(wsHost, wsPort, "/ws");
+    webSocket.onEvent(webSocketEvent);
+    webSocket.setReconnectInterval(5000);
+}
+
+void WebSocketHandler::loop() {
+    webSocket.loop();
+    reconnectWebSocket();
+}
+
+
