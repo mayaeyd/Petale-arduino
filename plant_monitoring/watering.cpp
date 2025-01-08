@@ -15,3 +15,17 @@ void Watering::begin() {
     digitalWrite(PUMP_RELAY_PIN, LOW);
 }
 
+void Watering::checkSchedule() {
+    if (!wateringSchedule.enabled) return;
+    
+    time_t now;
+    time(&now);
+    struct tm *timeinfo = localtime(&now);
+    
+    if (timeinfo->tm_hour == wateringSchedule.hour && 
+        timeinfo->tm_min == wateringSchedule.minute && 
+        timeinfo->tm_sec == 0) {
+        waterPlants(wateringSchedule.duration);
+    }
+}
+
