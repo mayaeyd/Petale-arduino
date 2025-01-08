@@ -2,7 +2,7 @@
 #define WEBSOCKET_HANDLER_H
 
 #include <WebSocketsClient.h>
-#include "config.h"
+#include "config.template.h"
 
 class WebSocketHandler {
 public:

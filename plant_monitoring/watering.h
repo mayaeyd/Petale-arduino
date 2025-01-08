@@ -1,7 +1,7 @@
 #ifndef WATERING_H
 #define WATERING_H
 
-#include "config.h"
+#include "config.template.h"
 
 struct Schedule {
     int hour;
