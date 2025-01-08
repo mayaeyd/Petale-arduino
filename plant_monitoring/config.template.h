@@ -9,3 +9,11 @@
 #define PUMP_RELAY_PIN D1
 #define DHTTYPE DHT11
 
+// Network settings
+#define WEBSOCKET_RECONNECT_INTERVAL 5000
+#define MAX_RETRIES 3
+
+// Network credentials - REPLACE THESE
+const char* ssid = "YOUR_WIFI_SSID";
+const char* password = "YOUR_WIFI_PASSWORD";
+
