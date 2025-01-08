@@ -17,3 +17,8 @@
 const char* ssid = "YOUR_WIFI_SSID";
 const char* password = "YOUR_WIFI_PASSWORD";
 
+// WebSocket server settings - REPLACE THESE
+const char* wsHost = "YOUR_WEBSOCKET_HOST";
+const int wsPort = YOUR_WEBSOCKET_PORT;
+
+#endif
