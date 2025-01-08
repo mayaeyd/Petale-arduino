@@ -45,3 +45,26 @@ void WebSocketHandler::webSocketEvent(WStype_t type, uint8_t * payload, size_t l
             break;
     }
 }
+
+void WebSocketHandler::handleWebSocketMessage(uint8_t * payload, size_t length) {
+    DynamicJsonDocument doc(200);
+    DeserializationError error = deserializeJson(doc, payload);
+    
+    if (!error) {
+        const char* type = doc["type"];
+        
+        if (strcmp(type, "water_now") == 0) {
+            int duration = doc["duration"] | 10;
+            Watering::getInstance().waterPlants(duration);
+        }
+        else if (strcmp(type, "update_schedule") == 0) {
+            Watering::getInstance().updateSchedule(
+                doc["hour"] | Watering::getInstance().getSchedule().hour,
+                doc["minute"] | Watering::getInstance().getSchedule().minute,
+                doc["duration"] | Watering::getInstance().getSchedule().duration,
+                doc["enabled"] | Watering::getInstance().getSchedule().enabled
+            );
+        }
+    }
+}
+
