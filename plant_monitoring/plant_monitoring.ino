@@ -34,5 +34,12 @@ void loop() {
 
     WebSocketHandler::getInstance().loop();
     
+    static unsigned long lastUpdate = 0;
+    if (millis() - lastUpdate > 2500) {
+        sensors.readAndSendData();
+        lastUpdate = millis();
+    }
     
+    Watering::getInstance().checkSchedule();
+    delay(200);
 }
