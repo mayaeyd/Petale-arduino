@@ -29,3 +29,8 @@ void Watering::checkSchedule() {
     }
 }
 
+void Watering::waterPlants(int duration) {
+    digitalWrite(PUMP_RELAY_PIN, HIGH);
+    delay(duration * 1000);
+    digitalWrite(PUMP_RELAY_PIN, LOW);
+}
