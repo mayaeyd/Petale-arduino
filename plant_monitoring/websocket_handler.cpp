@@ -68,3 +68,10 @@ void WebSocketHandler::handleWebSocketMessage(uint8_t * payload, size_t length) 
     }
 }
 
+void WebSocketHandler::reconnectWebSocket() {
+    if (!webSocketConnected && (millis() - lastWebSocketReconnectAttempt > WEBSOCKET_RECONNECT_INTERVAL)) {
+        Serial.println("Attempting WebSocket reconnection...");
+        webSocket.begin(wsHost, wsPort, "/ws");
+        lastWebSocketReconnectAttempt = millis();
+    }
+}
