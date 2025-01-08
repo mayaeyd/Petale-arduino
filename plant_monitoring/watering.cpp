@@ -10,3 +10,8 @@ Watering& Watering::getInstance() {
     return *instance;
 }
 
+void Watering::begin() {
+    pinMode(PUMP_RELAY_PIN, OUTPUT);
+    digitalWrite(PUMP_RELAY_PIN, LOW);
+}
+
