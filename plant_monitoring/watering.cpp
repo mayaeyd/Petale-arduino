@@ -34,3 +34,10 @@ void Watering::waterPlants(int duration) {
     delay(duration * 1000);
     digitalWrite(PUMP_RELAY_PIN, LOW);
 }
+
+void Watering::updateSchedule(int hour, int minute, int duration, bool enabled) {
+    wateringSchedule.hour = hour;
+    wateringSchedule.minute = minute;
+    wateringSchedule.duration = duration;
+    wateringSchedule.enabled = enabled;
+}
