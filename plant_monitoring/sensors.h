@@ -2,7 +2,7 @@
 #define SENSORS_H
 
 #include <DHT.h>
-#include "config.template.h"
+#include "config.h"
 
 class Sensors {
 public:
